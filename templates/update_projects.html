@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Project</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #3e2723, #5d4037);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background: #f5ebe0;
+            padding: 35px;
+            border-radius: 20px;
+            width: 380px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            text-align: center;
+        }
+
+        h2 {
+            color: #3e2723;
+        }
+
+        select, input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 10px;
+            border: 1px solid #d7ccc8;
+            background: #fffaf5;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 18px;
+            border: none;
+            border-radius: 10px;
+            background: #6d4c41;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #4e342e;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>Update Project</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <!-- STATUS -->
+        <label>Status</label>
+        <select name="status">
+            <option>Not Started</option>
+            <option>In Progress</option>
+            <option>Completed</option>
+        </select>
+
+        <!-- CUSTOM MESSAGE -->
+        <label>Update Message</label>
+        <textarea name="message" placeholder="Write update..."></textarea>
+
+        <!-- PDF -->
+        <label>Upload PDF</label>
+        <input type="file" name="pdf_file">
+
+        <!-- CAD -->
+        <label>Upload CAD</label>
+        <input type="file" name="cad_file">
+
+        <button type="submit">Update Project</button>
+
+    </form>
+</div>
+
+</body>
+</html>

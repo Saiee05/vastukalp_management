@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #3e2723, #5d4037);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            background: #f5ebe0;
+            padding: 35px;
+            border-radius: 20px;
+            width: 400px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            text-align: center;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #3e2723;
+            margin-bottom: 20px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 10px;
+            border: 1px solid #d7ccc8;
+            background: #fffaf5;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 18px;
+            border: none;
+            border-radius: 10px;
+            background: #6d4c41;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #4e342e;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Edit Project</h2>
+
+    <form method="POST">
+        <input type="text" name="project_name" value="{{ project[1] }}" required>
+
+        <select name="client_id" required>
+            {% for c in clients %}
+                <option value="{{ c[0] }}" {% if c[0] == project[2] %}selected{% endif %}>
+                    {{ c[1] }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <select name="employee_id" required>
+            {% for e in employees %}
+                <option value="{{ e[0] }}" {% if e[0] == project[3] %}selected{% endif %}>
+                    {{ e[1] }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <input type="date" name="deadline" value="{{ project[4] }}" required>
+
+        <select name="status" required>
+            <option value="Not Started" {% if project[5] == 'Not Started' %}selected{% endif %}>Not Started</option>
+            <option value="In Progress" {% if project[5] == 'In Progress' %}selected{% endif %}>In Progress</option>
+            <option value="Completed" {% if project[5] == 'Completed' %}selected{% endif %}>Completed</option>
+        </select>
+
+        <button type="submit">Update Project</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employees</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            background: #f5ebe0;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
+            background: #3e2723;
+            color: white;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #d7ccc8;
+            text-decoration: none;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .sidebar a:hover {
+            background: #5d4037;
+            color: white;
+        }
+
+        /* Main */
+        .main {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            color: #3e2723;
+        }
+
+        .add-btn {
+            background: #6d4c41;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .add-btn:hover {
+            background: #4e342e;
+        }
+
+        /* Table */
+        .table-box {
+            margin-top: 20px;
+            background: #fffaf5;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 12px;
+            color: #6d4c41;
+        }
+
+        td {
+            padding: 12px;
+        }
+
+        tr {
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Buttons */
+        .edit {
+            color: #3e2723;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .delete {
+            color: red;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>Vastukalp</h2>
+    <a href="/admin_dashboard">Dashboard</a>
+    <a href="/employees">Employees</a>
+    <a href="/clients">Clients</a>
+    <a href="/projects">Projects</a>
+    <a href="#">Notifications</a>
+    <a href="/logout">Logout</a>
+</div>
+
+<div class="main">
+    <div class="top">
+        <h1>Employees</h1>
+        <a href="/add_employee" class="add-btn">+ Add Employee</a>
+    </div>
+    <!-- Search Bar -->
+<div style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+    <form method="GET" action="/employees" style="flex: 1; display: flex;">
+        <input 
+            type="text" 
+            name="search" 
+            placeholder="Search employee..." 
+            style="flex: 1; padding: 10px 15px; border-radius: 25px 0 0 25px; border: 1px solid #d2a679; outline: none; font-size: 14px;"
+        >
+        <button 
+            type="submit" 
+            style="padding: 10px 20px; border-radius: 0 25px 25px 0; border: none; background: #a97455; color: white; cursor: pointer; font-weight: 600; transition: 0.3s;"
+            onmouseover="this.style.background='#8b5e3c'"
+            onmouseout="this.style.background='#a97455'"
+        >
+            🔍 Search
+        </button>
+    </form>
+</div>
+
+<!-- Display "not found" message -->
+{% if message %}
+    <p style="color: #7b3f00; font-style: italic; margin-bottom: 15px;">{{ message }}</p>
+{% endif %}
+
+    <div class="table-box">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Actions</th>
+            </tr>
+
+            {% for e in employees %}
+            <tr>
+                <td>{{ e[0] }}</td>
+                <td>{{ e[1] }}</td>
+                <td>{{ e[2] }}</td>
+                <td>{{ e[3] }}</td>
+                <td>
+                    <a href="/edit_employee/{{ e[0] }}" class="edit">Edit</a>
+                    <a href="/delete_employee/{{ e[0] }}" class="delete">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

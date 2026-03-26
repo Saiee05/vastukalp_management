@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Client</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #3e2723, #5d4037);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background: #f5ebe0;
+            padding: 35px;
+            border-radius: 20px;
+            width: 350px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            text-align: center;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #3e2723;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 10px;
+            border: 1px solid #d7ccc8;
+            background: #fffaf5;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 18px;
+            border: none;
+            border-radius: 10px;
+            background: #6d4c41;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #4e342e;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>Edit Client</h2>
+
+    <form method="POST">
+        <input type="text" name="name" value="{{ client[1] }}" required>
+        <input type="email" name="email" value="{{ client[2] }}" required>
+        <input type="text" name="contact" value="{{ client[3] }}" required>
+
+        <button type="submit">Update Client</button>
+    </form>
+</div>
+
+</body>
+</html>

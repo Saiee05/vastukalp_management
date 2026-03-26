@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Project</title>
+
+    <style>
+        body {
+            font-family: Poppins;
+            background: #f5ebe0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background: #fffaf5;
+            padding: 25px;
+            border-radius: 15px;
+            width: 350px;
+        }
+
+        select, textarea, button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        button {
+            background: #6d4c41;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>Update Project</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <select name="status">
+            <option>Not Started</option>
+            <option>In Progress</option>
+            <option>Completed</option>
+        </select>
+
+        <textarea name="message" placeholder="Write update..."></textarea>
+        <input type="file" name="pdf_file">
+<input type="file" name="cad_file">
+
+        <button type="submit">Update</button>
+
+    </form>
+</div>
+
+</body>
+</html>

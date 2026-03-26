@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notifications</title>
+    <style>
+        body {
+            font-family: Poppins, sans-serif;
+            background: #f5ebe0;
+            padding: 30px;
+        }
+
+        h2 {
+            color: #3e2723;
+        }
+
+        .box {
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+
+        .not-started {
+            background: #d7ccc8;
+        }
+
+        .in-progress {
+            background: #ffe0b2;
+        }
+
+        .completed {
+            background: #c8e6c9;
+        }
+
+        .default {
+            background: white;
+        }
+
+        small {
+            color: #5d4037;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>🔔 Notifications</h2>
+
+{% if notifications %}
+    {% for n in notifications %}
+        {% if 'Not Started' in n[0] %}
+            <div class="box not-started">
+        {% elif 'In Progress' in n[0] %}
+            <div class="box in-progress">
+        {% elif 'Completed' in n[0] %}
+            <div class="box completed">
+        {% else %}
+            <div class="box default">
+        {% endif %}
+
+            <p>
+                {% if 'Not Started' in n[0] %}⏳
+                {% elif 'In Progress' in n[0] %}🚧
+                {% elif 'Completed' in n[0] %}✅
+                {% else %}🔔
+                {% endif %}
+                <b>{{ n[0] }}</b>
+            </p>
+            <small>{{ n[1] }}</small>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No notifications yet 😅</p>
+{% endif %}
+
+</body>
+</html>

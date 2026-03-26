@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notifications</title>
+</head>
+
+<body style="font-family:Poppins; background:#f5ebe0; padding:30px;">
+
+<h2>🔔 Notifications</h2>
+
+{% if notifications %}
+    {% for n in notifications %}
+        <div style="background:white; padding:15px; margin-top:10px; border-radius:10px;">
+            <p>{{ n[0] }}</p>
+            <small>{{ n[1] }}</small>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No notifications yet 😅</p>
+{% endif %}
+
+</body>
+</html>

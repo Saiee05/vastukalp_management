@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notifications</title>
+    <style>
+        body {
+            font-family: Poppins;
+            background: #f5ebe0;
+            padding: 30px;
+        }
+
+        h2 {
+            color: #3e2723;
+        }
+
+        .box {
+            background: #fffaf5;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        small {
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+
+<h2>🔔 Notifications</h2>
+
+{% for n in notifications %}
+<div class="box">
+    <p>{{ n[0] }}</p>
+    <small>{{ n[1] }}</small>
+</div>
+{% endfor %}
+
+</body>
+</html>

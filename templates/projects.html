@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            background: #f5ebe0;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
+            background: #3e2723;
+            color: white;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #d7ccc8;
+            text-decoration: none;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .sidebar a:hover {
+            background: #5d4037;
+            color: white;
+        }
+
+        /* Main */
+        .main {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            color: #3e2723;
+        }
+
+        .add-btn {
+            background: #6d4c41;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .add-btn:hover {
+            background: #4e342e;
+        }
+
+        /* Table */
+        .table-box {
+            margin-top: 20px;
+            background: #fffaf5;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 12px;
+            color: #6d4c41;
+        }
+
+        td {
+            padding: 12px;
+        }
+
+        tr {
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Status */
+        .status {
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .not-started {
+            background: #d7ccc8;
+            color: #3e2723;
+        }
+
+        .in-progress {
+            background: #ffe0b2;
+            color: #e65100;
+        }
+
+        .completed {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+
+        .edit {
+            color: #3e2723;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .edit:hover {
+            text-decoration: underline;
+        }
+
+        .file-link {
+            display: block;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>Vastukalp</h2>
+    <a href="/admin_dashboard">Dashboard</a>
+    <a href="/employees">Employees</a>
+    <a href="/clients">Clients</a>
+    <a href="/projects">Projects</a>
+    <a href="#">Notifications</a>
+    <a href="/logout">Logout</a>
+</div>
+
+<div class="main">
+    <div class="top">
+        <h1>Projects</h1>
+        <a href="/add_project" class="add-btn">+ Add Project</a>
+    </div>
+
+    <div class="table-box">
+        <table>
+            <tr>
+                <th>No</th>
+                <th>Project</th>
+                <th>Client</th>
+                <th>Employee</th>
+                <th>Deadline</th>
+                <th>Status</th>
+                <th>Files</th> <!-- NEW -->
+                <th>Actions</th>
+            </tr>
+
+            {% for p in projects %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ p[1] }}</td>
+                <td>{{ p[2] }}</td>
+                <td>{{ p[3] }}</td>
+                <td>{{ p[4] }}</td>
+
+                <td>
+                    {% if p[5] == 'Not Started' %}
+                        <span class="status not-started">Not Started</span>
+                    {% elif p[5] == 'In Progress' %}
+                        <span class="status in-progress">In Progress</span>
+                    {% else %}
+                        <span class="status completed">Completed</span>
+                    {% endif %}
+                </td>
+                
+
+                <!-- 🔥 FILE COLUMN -->
+                <td>
+                    {% if p[6] %}
+                        <a class="file-link" href="/uploads/{{ p[6] }}" target="_blank">📄 PDF</a>
+                    {% else %}
+                        <span class="file-link">No PDF</span>
+                    {% endif %}
+
+                    {% if p[7] %}
+                        <a class="file-link" href="/uploads/{{ p[7] }}" target="_blank">📐 CAD</a>
+                    {% else %}
+                        <span class="file-link">No CAD</span>
+                    {% endif %}
+                </td>
+
+                <td>
+                    <a class="edit" href="/edit_project/{{ p[0] }}">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clients</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            background: #f5ebe0;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
+            background: #3e2723;
+            color: white;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #d7ccc8;
+            text-decoration: none;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .sidebar a:hover {
+            background: #5d4037;
+            color: white;
+        }
+
+        /* Main */
+        .main {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            color: #3e2723;
+        }
+
+        .add-btn {
+            background: #6d4c41;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .add-btn:hover {
+            background: #4e342e;
+        }
+
+        /* Table */
+        .table-box {
+            margin-top: 20px;
+            background: #fffaf5;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 12px;
+            color: #6d4c41;
+        }
+
+        td {
+            padding: 12px;
+        }
+
+        tr {
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Buttons */
+        .edit {
+            color: #3e2723;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .delete {
+            color: red;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>Vastukalp</h2>
+    <a href="/admin_dashboard">Dashboard</a>
+    <a href="/employees">Employees</a>
+    <a href="/clients">Clients</a>
+    <a href="/projects">Projects</a>
+    <a href="#">Notifications</a>
+    <a href="/logout">Logout</a>
+</div>
+
+<div class="main">
+    <div class="top">
+        <h1>Clients</h1>
+        <a href="/add_client" class="add-btn">+ Add Client</a>
+    </div>
+
+    <div class="table-box">
+        <table>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Actions</th>
+            </tr>
+
+            {% for c in clients %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ c[1] }}</td>
+                <td>{{ c[2] }}</td>
+                <td>{{ c[3] }}</td>
+                <td>
+                    <a href="/edit_client/{{ c[0] }}" class="edit">Edit</a>
+                    <a href="/delete_client/{{ c[0] }}" class="delete">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
